@@ -7,17 +7,17 @@ FROM base as builder
 
 
 # Update the list of packages
-RUN sudo apt-get update
+RUN apt-get update
 # Install pre-requisite packages.
-RUN sudo apt-get install -y wget apt-transport-https software-properties-common
+RUN apt-get install -y wget apt-transport-https software-properties-common sudo
 # Download the Microsoft repository GPG keys
 RUN wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
 # Register the Microsoft repository GPG keys
-RUN sudo dpkg -i packages-microsoft-prod.deb
+RUN dpkg -i packages-microsoft-prod.deb
 # Update the list of packages after we added packages.microsoft.com
-RUN sudo apt-get update
+RUN apt-get update
 # Install PowerShell
-RUN sudo apt-get install -y powershell
+RUN apt-get install -y powershell
 # Start PowerShell
 #RUN pwsh
 
