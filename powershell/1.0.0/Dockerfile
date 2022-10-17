@@ -1,23 +1,16 @@
 # Base our app image off of the WALKOFF App SDK image
-FROM frikky/shuffle:app_sdk_ubuntu as base
+FROM peterclemenko/shuffle:app_sdk_kali as base
 
 # We're going to stage away all of the bloat from the build tools so lets create a builder stage
 FROM base as builder
 
-
-
 # Update the list of packages
 RUN apt-get update
+
 # Install pre-requisite packages.
-RUN apt-get install -y wget apt-transport-https software-properties-common sudo
-# Download the Microsoft repository GPG keys
-RUN wget -q "https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb"
-# Register the Microsoft repository GPG keys
-RUN dpkg -i packages-microsoft-prod.deb
-# Update the list of packages after we added packages.microsoft.com
-RUN apt-get update
-# Install PowerShell
-RUN apt-get install -y powershell
+RUN apt-get install -y wget apt-transport-https software-properties-common sudo powershell python3-pip
+RUN apt-get dist-upgrade
+
 # Start PowerShell
 #RUN pwsh
 
