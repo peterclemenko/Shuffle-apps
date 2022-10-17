@@ -2,7 +2,6 @@ import time
 import json
 import socket
 import asyncio
-import requests
 import subprocess
         
 from walkoff_app_sdk.app_base import AppBase
